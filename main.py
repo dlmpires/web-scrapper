@@ -1,15 +1,11 @@
-from bs4 import BeautifulSoup
-import requests
+from actions import scrapeAll, scrapeKeywords
 
-output = open("scrape.txt", "w")
-page = requests.get("https://quotes.toscrape.com/")
+print("Hey :) \nWelcome to this simple web scrapper, for now, you have 2 options: \n\n1- Scrape the whole website\n2- Search keywords in quotes\n3- Search keywords in authors\n")
+choice = input("    >>> ")
 
-soup = BeautifulSoup(page.content, "html.parser")
+if choice=='1':
+    scrapeAll()
 
-quotes = soup.findAll("span", attrs={"class":"text"})
-authors = soup.findAll("small", attrs={"class":"author"})
-
-for quote, author in zip (quotes, authors):
-    print("Quote: " + quote.text + "\nAuthor: " + author.text + "\n", file=output)
-
-output.close()
+elif choice=='2':
+    keyword = input("Select the keyword to search: ")
+    scrapeKeywords(keyword)
