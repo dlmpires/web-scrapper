@@ -21,7 +21,7 @@ def scrapeAll():
 # The for loop searches for quotes with a keyword (re.search) and then re.sub replaces the keyword to Uppercase
 def scrapeKeywords(keyword):
     with open("scrape.txt", "w") as output:
-        for quote in quotes:
+        for quote, author in zip (quotes, authors):
             if re.search(keyword, quote.text, re.IGNORECASE):
                 highlighted_quote = re.sub(f"({keyword})", keyword.upper(), quote.text, re.IGNORECASE)
-                print(highlighted_quote, file=output)
+                print("Quote: " + highlighted_quote, "\nAuthor: " + author.text + "\n", file=output)
