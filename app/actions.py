@@ -25,3 +25,10 @@ def scrapeKeywords(keyword):
             if re.search(keyword, quote.text, re.IGNORECASE):
                 highlighted_quote = re.sub(f"({keyword})", keyword.upper(), quote.text, re.IGNORECASE)
                 print("Quote: " + highlighted_quote, "\nAuthor: " + author.text + "\n", file=output)
+
+# Basically the same as the function above, except this one searches for the author
+def scrapeAuthors(keyword):
+    with open("scrape.txt", "w") as output:
+        for author, quote in zip (authors, quotes):
+            if re.search(keyword, author.text, re.IGNORECASE):
+                print("Author: " + author.text, " Quote" + quote.text, file=output)
